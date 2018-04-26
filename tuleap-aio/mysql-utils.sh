@@ -1,8 +1,8 @@
 #!/bin/bash
 
-set -e
+set -ex
 # Do not leak passwords
-set +x
+#set +x
 
 # Starts the DB and upgrade the data
 start_mysql() {

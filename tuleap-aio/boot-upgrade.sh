@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 # On start, ensure db is consistent with data (useful for version bump)
 /usr/lib/forgeupgrade/bin/forgeupgrade --config=/etc/codendi/forgeupgrade/config.ini update

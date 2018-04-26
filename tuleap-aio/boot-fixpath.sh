@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 # It's a "reboot", just discard image default
 [ -f /etc/aliases ]               && rm -f /etc/aliases

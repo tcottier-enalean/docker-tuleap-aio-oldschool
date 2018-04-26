@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex 
 
 echo -n "Update data ownership to current image..."
 
