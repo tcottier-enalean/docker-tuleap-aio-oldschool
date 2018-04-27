@@ -53,6 +53,11 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
 
 COPY tuleap-aio /usr/share/tuleap/tools/docker/tuleap-aio
 
+RUN chgrp -R 0 /etc/pki/tls/private/   \
+      /etc/ssl/certs/ && \
+    chmod -R g=u /etc/pki/tls/private/ \
+      /etc/ssl/certs/
+
 EXPOSE 22 80 443
 
 CMD ["/usr/share/tuleap/tools/docker/tuleap-aio/run.sh"]
