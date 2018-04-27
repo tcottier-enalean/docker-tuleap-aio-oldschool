@@ -8,6 +8,7 @@ function generate_passwd {
 
 # Generate self signed certificate for Apache
 export RANDFILE=/etc/pki/tls/private/.rnd
+touch ${RANDFILE}
 openssl req -new -nodes -keyout /etc/pki/tls/private/localhost.key \
          -subj "/C=FR/ST=SomeState/L=SomeCity/O=SomeOrganization/CN=${VIRTUAL_HOST}" 
          -x509 -sha256 -days 365 -set_serial $RANDOM -extensions v3_req \
