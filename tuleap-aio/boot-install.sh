@@ -6,22 +6,6 @@ function generate_passwd {
    cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 15 | head -1
 }
 
-mkdir -p /data/etc/httpd/
-mkdir -p /data/etc/ssh/
-mkdir -p /data/home
-mkdir -p /data/lib
-mkdir -p /data/etc/logrotate.d
-mkdir -p /data/etc/ssl/certs/
-mkdir -p /data/etc/pki/tls/private/
-mkdir -p /data/etc/opt/rh/rh-php56
-mkdir -p /data/root && chmod 700 /data/root
-
-pushd . > /dev/null
-cd /var/lib
-mv /var/lib/mysql /data/lib && ln -s /data/lib/mysql mysql
-[ -d /var/lib/gitolite ] && mv /var/lib/gitolite /data/lib && ln -s /data/lib/gitolite gitolite
-popd > /dev/null
-
 # Generate self signed certificate for Apache
 cat << EOF | openssl req -new -nodes -keyout /etc/pki/tls/private/localhost.key \
          -x509 -sha256 -days 365 -set_serial $RANDOM -extensions v3_req \
@@ -36,7 +20,7 @@ root@${VIRTUAL_HOST}
 EOF
 
 INSTALL_OPTIONS="
-    --password-file=/data/root/.tuleap_passwd
+    --password-file=/root/.tuleap_passwd
     --disable-chkconfig
     --disable-domain-name-check
     --disable-unix-groups
@@ -79,29 +63,3 @@ service httpd stop
 service crond stop
 service nginx stop
 service rh-php56-php-fpm stop
-
-### Move all generated files to persistant storage ###
-
-# Conf
-mv /etc/httpd/conf            /data/etc/httpd
-mv /etc/httpd/conf.d          /data/etc/httpd
-mv /etc/pki/tls/private/localhost.key /data/etc/pki/tls/private
-mv /etc/ssl/certs/localhost.crt /data/etc/ssl/certs
-mv /etc/tuleap                /data/etc
-mv /etc/aliases               /data/etc
-mv /etc/logrotate.d/httpd     /data/etc/logrotate.d
-mv /etc/my.cnf                /data/etc
-mv /etc/crontab               /data/etc
-mv /etc/nginx                 /data/etc
-mv /etc/opt/rh/rh-php56/php-fpm.d /data/etc/opt/rh/rh-php56/
-mv /etc/ssh/ssh_host_*        /data/etc/ssh
-
-# Data
-mv /home/codendiadm /data/home
-mv /home/groups    /data/home
-mv /home/users     /data/home
-mv /var/lib/tuleap /data/lib
-
-# Will be restored by boot-fixpath.sh later
-[ -h /var/lib/mysql ] && rm /var/lib/mysql
-[ -h /var/lib/gitolite ] && rm /var/lib/gitolite

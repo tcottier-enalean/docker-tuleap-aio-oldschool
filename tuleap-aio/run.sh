@@ -19,7 +19,7 @@ if [ -n "$DB_HOST" ]; then
 fi
 
 TULEAP_INSTALL_TIME="false"
-if [ ! -f /data/etc/tuleap/conf/local.inc ]; then
+if [ ! -f /etc/tuleap/conf/local.inc ]; then
     TULEAP_INSTALL_TIME="true"
 
     # If tuleap directory is not in data, assume it's first boot and move
