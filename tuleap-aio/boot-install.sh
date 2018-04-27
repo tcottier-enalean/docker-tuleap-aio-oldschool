@@ -18,8 +18,8 @@ mkdir -p /data/root && chmod 700 /data/root
 
 pushd . > /dev/null
 cd /var/lib
-cp  -rp /var/lib/mysql /data/lib && rm -rf /var/lib/mysql && ln -s /data/lib/mysql mysql
-[ -d /var/lib/gitolite ] && cp -rp /var/lib/gitolite /data/lib && rm -rf /var/lib/gitolite && ln -s /data/lib/gitolite gitolite
+mv /var/lib/mysql /data/lib && ln -s /data/lib/mysql mysql
+[ -d /var/lib/gitolite ] && mv /var/lib/gitolite /data/lib && ln -s /data/lib/gitolite gitolite
 popd > /dev/null
 
 # Generate self signed certificate for Apache

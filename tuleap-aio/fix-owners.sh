@@ -10,16 +10,11 @@ chown -R gitolite:gitolite \
 
 chown -R codendiadm:codendiadm \
     /data/etc/tuleap \
-    /data/etc/httpd/conf.d/codendi_svnroot.conf \
-    /data/etc/httpd/conf.d/codendi_svnroot.conf.old \
     /data/home/codendiadm \
-    /data/lib/tuleap/boomerang \
     /data/lib/tuleap/docman \
-    /data/lib/tuleap/forumml \
     /data/lib/tuleap/images \
     /data/lib/tuleap/mediawiki \
     /data/lib/tuleap/tracker \
-    /data/lib/tuleap/trackerv3 \
     /data/lib/tuleap/user \
     /data/lib/tuleap/wiki \
     /data/lib/tuleap/gitolite/admin \
@@ -36,15 +31,7 @@ chown codendiadm:codendiadm \
     /data/lib/tuleap/svnroot
 
 chown codendiadm \
-    /data/lib/tuleap/secure_ftp/* \
     /data/lib/tuleap/ftp/tuleap/*
-
-chown -R codendiadm \
-    /data/lib/tuleap/svnroot/*
-
-chown dummy \
-    /data/home/groups/* \
-    /data/lib/tuleap/ftp/pub/*
 
 chown dummy:dummy \
     /data/lib/tuleap/dumps
