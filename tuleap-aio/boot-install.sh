@@ -7,10 +7,10 @@ function generate_passwd {
 }
 
 # Generate self signed certificate for Apache
-openssl req -new -nodes -keyout /etc/pki/tls/private/localhost.key \
-         -subj "/C=FR/ST=SomeState/L=SomeCity/O=SomeOrganization/CN=${VIRTUAL_HOST}" 
-         -x509 -sha256 -days 365 -set_serial $RANDOM -extensions v3_req \
-         -out /etc/ssl/certs/localhost.crt 2>/dev/null
+# openssl req -new -nodes -keyout /tmp/localhost.key \
+#          -subj "/C=FR/ST=SomeState/L=SomeCity/O=SomeOrganization/CN=${VIRTUAL_HOST}" 
+#          -x509 -sha256 -days 365 -set_serial $RANDOM -extensions v3_req \
+#          -out /tmp/localhost.crt 2>/dev/null
 
 INSTALL_OPTIONS="
     --password-file=/root/.tuleap_passwd
