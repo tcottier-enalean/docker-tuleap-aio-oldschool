@@ -7,7 +7,7 @@ function generate_passwd {
 }
 
 # Generate self signed certificate for Apache
-export RANDFILE=$OPENSHIFT_DATA_DIR/.rnd
+export RANDFILE=/etc/pki/tls/private/.rnd
 touch ${RANDFILE}
 openssl req -new -nodes -keyout /etc/pki/tls/private/localhost.key \
          -subj "/C=FR/ST=SomeState/L=SomeCity/O=SomeOrganization/CN=${VIRTUAL_HOST}" 
